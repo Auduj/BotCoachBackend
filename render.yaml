@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: botcoach-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "./start.sh"
+    runtime: python
+    pythonVersion: 3.11
