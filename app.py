@@ -1,6 +1,7 @@
 from twitchio.ext import commands
 from flask import Flask, jsonify
 from dotenv import load_dotenv
+from flask_cors import CORS
 import requests
 import threading
 import time
@@ -17,6 +18,7 @@ TOKEN_URL = "https://id.twitch.tv/oauth2/token"
 
 # --- Flask Setup ---
 app = Flask(__name__)
+CORS(app, origins=["https://auduj.github.io"])
 participants = {}
 
 @app.route('/')
