@@ -83,13 +83,20 @@ class Bot(commands.Bot):
     @commands.command(name='coachme')
     async def coachme(self, ctx):
         parts = ctx.message.content.strip().split()
+        user = ctx.author.name
+
+        if user in participants:
+            game_id = participants[user]
+            await ctx.send(f"{user}, tu es déjà inscrit avec l'ID : {game_id} 🛡️")
+            return
+
         if len(parts) == 2:
             game_id = parts[1]
-            user = ctx.author.name
             participants[user] = game_id
             await ctx.send(f"{user} a été ajouté avec l'ID de game : {game_id}")
         else:
             await ctx.send("❗ Utilisation correcte : !coachme ID_DE_GAME")
+
 
 # --- Démarrage Flask + Bot ---
 def start_flask():
@@ -99,5 +106,3 @@ if __name__ == '__main__':
     threading.Thread(target=start_flask).start()
     bot = Bot()
     bot.run()
-
-
