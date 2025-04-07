@@ -29,6 +29,11 @@ def home():
 def get_participants():
     return jsonify(participants)
 
+@app.route('/participants', methods=['DELETE'])
+def reset_participants():
+    participants.clear()
+    return jsonify({"message": "Liste des participants réinitialisée"}), 200
+
 # --- Token Manager ---
 token_expiry = time.time() + 3600
 
@@ -94,3 +99,5 @@ if __name__ == '__main__':
     threading.Thread(target=start_flask).start()
     bot = Bot()
     bot.run()
+
+
