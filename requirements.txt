@@ -1,5 +1,5 @@
 flask
-git+https://github.com/TwitchIO/TwitchIO@v2.7.1#egg=twitchio
 requests
 python-dotenv
 flask-cors
+git+https://github.com/TwitchIO/TwitchIO.git@rewrite#egg=twitchio
