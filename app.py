@@ -1,6 +1,5 @@
 from twitchio.ext import commands
-from flask import Flask, jsonify
-from flask import request
+from flask import Flask, jsonify, request
 from dotenv import load_dotenv
 from flask_cors import CORS
 import requests
@@ -78,7 +77,9 @@ class Bot(commands.Bot):
         super().__init__(
             token=get_valid_token(),
             prefix='!',
-            initial_channels=[CHANNEL]
+            initial_channels=[CHANNEL],
+            client_id=CLIENT_ID,
+            bot_id=CLIENT_ID  # Pas de client_secret ici
         )
 
     async def event_ready(self):
@@ -105,7 +106,6 @@ class Bot(commands.Bot):
             await ctx.send(f"{user} a été ajouté avec l'ID de game : {game_id}")
         else:
             await ctx.send("❗ Utilisation correcte : !coachme ID_DE_GAME")
-
 
 # --- Démarrage Flask + Bot ---
 def start_flask():
