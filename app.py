@@ -1,5 +1,6 @@
 from twitchio.ext import commands
 from flask import Flask, jsonify
+from flask import request
 from dotenv import load_dotenv
 from flask_cors import CORS
 import requests
@@ -28,6 +29,14 @@ def home():
 @app.route('/participants')
 def get_participants():
     return jsonify(participants)
+
+@app.route('/participants/<username>', methods=['DELETE'])
+def remove_participant(username):
+    if username in participants:
+        del participants[username]
+        return jsonify({"message": f"{username} retiré de la roue."}), 200
+    else:
+        return jsonify({"error": f"{username} non trouvé."}), 404
 
 @app.route('/participants', methods=['DELETE'])
 def reset_participants():
