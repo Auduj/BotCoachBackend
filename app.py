@@ -79,8 +79,7 @@ class Bot(commands.Bot):
             prefix='!',
             initial_channels=[CHANNEL],
             client_id=CLIENT_ID,
-            bot_id=CLIENT_ID,  # Pas de client_secret ici
-            client_secret=""
+            bot_id=CLIENT_ID  # Pas de client_secret ici
         )
 
     async def event_ready(self):

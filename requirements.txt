@@ -2,4 +2,4 @@ flask
 requests
 python-dotenv
 flask-cors
-git+https://github.com/TwitchIO/TwitchIO.git@main#egg=twitchio[starlette]
+twitchio
